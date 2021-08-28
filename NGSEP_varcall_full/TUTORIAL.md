@@ -3,9 +3,9 @@
 
 # Download and extract the scripts
 
-1. Go to the [main github page](https://github.com/aariani/bioinformatics_pipeline) of this repo and click on code (righ upper part) and click download ZIP.
+1. Go to the [main github page](https://github.com/aariani/bioinformatics_pipeline) of this repo and click on code button (green on the right upper part of the screen) and click download ZIP.
 
-2. Once downloaded copy the entire `NGSEP_varcall_full` folder in your working directory
+2. Once downloaded copy the entire `NGSEP_varcall_full` folder(with everything within)  in your working directory
 
 # Prepare data and folder
 
