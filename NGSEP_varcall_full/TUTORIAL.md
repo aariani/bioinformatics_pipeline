@@ -1,17 +1,22 @@
 
 # Tutorial
 
+# Download and extract the scripts
+
+1. Go to the [main github page](https://github.com/aariani/bioinformatics_pipeline) of this repo and click on code (righ upper part) and click download ZIP.
+
+2. Once downloaded copy the entire `NGSEP_varcall_full` folder in your working directory
+
+# Prepare data and folder
+
 How to use this script:
 
-1. Copy your demultiplexed and trimmed fastq a folder within this directory (name the directory `FASTQ`). There should be **a single FASTQ file for each sample** and each sample name must be unique
+1. Copy your demultiplexed and trimmed fastq a folder within your working directory (name the directory `FASTQ`). There should be **a single FASTQ file for each sample** and each sample name must be unique
 
-2. Copy your reference genome in a folder within this directory (name the directory `REF`).
+2. Copy your reference genome in a folder within your working directory (name the directory `REF`).
 
-3. Chek that python3 and git is installed in your system
+3. Chek that python3 is installed in your system
 
-4. Download the repository with the following code:
-
-    git
 
 # Run the script
 
