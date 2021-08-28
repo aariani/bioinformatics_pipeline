@@ -7,7 +7,11 @@ How to use this script:
 
 2. Copy your reference genome in a folder within this directory (name the directory `REF`).
 
-3. Chek that python3 is installed in your system.
+3. Chek that python3 and git is installed in your system
+
+4. Download the repository with the following code:
+
+    git
 
 # Run the script
 
