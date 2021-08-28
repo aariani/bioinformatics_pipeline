@@ -4,4 +4,4 @@ This pipeline is a wrapper for performing alignment and SNP calling on a panel w
 
 The first version I will keep it simple, otherwise I will try to develop a snakemake workflow for improving portability.
 
-For a tuorial the the [TUTORIAL file](TUTORIAL.md)
+For a tutorial see the [TUTORIAL file](TUTORIAL.md)
