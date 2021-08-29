@@ -22,7 +22,6 @@ ref=arg.ref
 reads=glob.glob('%s/*' % fastq)
 
 call('mkdir -p aln_res', shell=True)
-call('mkdir -p logs', shell=True)
 # java -jar NGSEPcore_<VERSION>.jar ReadsAligner -r <REF.fa> -i <SMPL>.fastq -s <SMPL> -o <SMPL>.bam > <SMPL>_aln.log
 # java -jar picard.jar SortSam SO=coordinate CREATE_INDEX=true I=<SMPL>.bam O=<SMPL>_sorted.bam >& <SMPL>_sort.log
 for i in reads:
