@@ -22,23 +22,26 @@ ref=arg.ref
 reads=glob.glob('%s/*' % fastq)
 
 call('mkdir -p aln_res', shell=True)
+call('mkdir -p logs', shell=True)
 # java -jar NGSEPcore_<VERSION>.jar ReadsAligner -r <REF.fa> -i <SMPL>.fastq -s <SMPL> -o <SMPL>.bam > <SMPL>_aln.log
 # java -jar picard.jar SortSam SO=coordinate CREATE_INDEX=true I=<SMPL>.bam O=<SMPL>_sorted.bam >& <SMPL>_sort.log
 for i in reads:
     smpl = basename(i).split('.')[0]
-    print('Start aligning sample %s' % smpl)
-    bam_out= smpl +'_aln.bam'
-    aln_cmd='''java -jar src/NGSEPcore_4.1.0.jar ReadsAligner -r %s -i %s -s %s -o aln_res/%s > logs/%s_aln.log''' % (ref, i, smpl, bam_out, smpl)
-    print(aln_cmd)
-    call(aln_cmd, shell=True)
-    picard_cmd = '''java -jar src/picard.jar SortSam SO=coordinate CREATE_INDEX=true I=aln_res/%s O=aln_res/%s_sorted.bam >& logs/%s_sort.log''' % (bam_out, smpl, smpl)
-    print(picard_cmd)
-    call(picard_cmd, shell=True)
-    
+    try:
+        print('Start aligning sample %s' % smpl)
+        bam_out= smpl +'_aln.bam'
+        aln_cmd='''java -Xmx8g -jar src/NGSEPcore_4.1.0.jar ReadsAligner -r %s -i %s -s %s -o aln_res/%s > logs/%s_aln.log''' % (ref, i, smpl, bam_out, smpl)
+        print(aln_cmd)
+        call(aln_cmd, shell=True)
+        picard_cmd = '''java -Xmx8g -jar src/picard.jar SortSam SO=coordinate CREATE_INDEX=true I=aln_res/%s O=aln_res/%s_sorted.bam >& logs/%s_sort.log''' % (bam_out, smpl, smpl)
+        print(picard_cmd)
+        call(picard_cmd, shell=True)
+    except:
+        print('Sample %s failed' % smpl, file=open('logs/failed_samples_info.txt', 'a'))
 
 # Multisamples SNPs calling
 
 #java -jar src/NGSEPcore_4.1.0.jar MultisampleVariantsDetector -maxBaseQS 30 -maxAlnsPerStartPos 100 -r <REF.fa> -o population.vcf <BAM_FILES>* >& population.log
-snp_allign_cmd = '''java -jar src/NGSEPcore_4.1.0.jar MultisampleVariantsDetector -maxBaseQS 30 -maxAlnsPerStartPos 100 -r %s -o FINAL_SNP_file.vcf res_aln/*_sorted.bam >& logs/population.log''' % ref
+snp_allign_cmd = '''java -Xmx8g -jar src/NGSEPcore_4.1.0.jar MultisampleVariantsDetector -maxBaseQS 30 -maxAlnsPerStartPos 100 -r %s -o FINAL_SNP_file.vcf res_aln/*_sorted.bam >& logs/population.log''' % ref
 print(snp_allign_cmd)
 call(snp_allign_cmd, shell=True)
