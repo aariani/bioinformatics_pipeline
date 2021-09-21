@@ -25,3 +25,12 @@ One you have prepared the different folders with the FASTQ and REF just type:
     python  NGSEP_aln_slurm.py -i FASTQ -r REF/YOUR_REFERENCE_GENOME_SEQUENCE
     
 This sript will create a lot of different files (named NGSEP_align_SAMPLENAME.slurm) in the current folder. You can run them separately
+
+# Create slurm job v2
+
+Once you have prepared the different folders just type:
+
+    python bowtie2_aln_slurm.py -i FASTQ
+    python samtools_sort_slurm.py -i FASTQ
+
+This script will create a lot of different files (named bowtie2_align_SAMPLENAME.slurm and samtools_sort_SAMPLENAME.slurm) in the current folder. You can run them separately on your grid
